@@ -16,8 +16,7 @@
     "lodash": "^4.17.21",
     "modern-normalize": "^1.1.0",
     "vue": "^3.2.21",
-    "vue-cli-plugin-svg": "^0.2.1",
-    "vue-router": "^4.0.10"
+    "vue-cli-plugin-svg": "^0.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.15",
