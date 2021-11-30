@@ -76,7 +76,10 @@
             placeholder="email@email.com"
           />
         </div>
-        <SendButton :class="$style.sendButton" />
+        <SendButton
+          :class="$style.sendButton"
+          @click="send"
+        />
       </div>
     </div>
   </div>
@@ -140,6 +143,7 @@ export default {
     'update:wishes': null,
     'update:message': null,
     'update:parentsEmail': null,
+    send: null,
   },
   computed: {
     nameProxy: {
@@ -189,6 +193,11 @@ export default {
       set(value) {
         this.$emit('update:parentsEmail', value);
       },
+    },
+  },
+  methods: {
+    send() {
+      this.$emit('send');
     },
   },
 };

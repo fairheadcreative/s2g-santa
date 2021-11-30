@@ -3,29 +3,60 @@
     :class="$style.page"
     class="container"
   >
-    <MainHeader />
-
-    <div
-      :class="$style.content"
+    <transition
+      :enter-from-class="$style.pageEnterFrom"
+      :enter-active-class="$style.pageEnterActive"
+      :leeave-active-class="$style.pageLeaveActive"
+      :leeave-to-class="$style.pageLeaveTo"
+      mode="out-in"
     >
-      <TheLetter
-        v-if="sticker"
-        v-model:name="letterData.name"
-        v-model:age="letterData.age"
-        v-model:country="letterData.country"
-        v-model:wishes="letterData.wishes"
-        v-model:message="letterData.message"
-        v-model:parents-email="letterData.parentsEmail"
-        :age-options="$options.AGE_OPTIONS"
-        :country-options="$options.COUNTRY_OPTIONS"
+      <MainHeader
+        v-if="stage === 1"
+      />
+      <FinalHeader
+        v-else-if="stage === 2"
         :sticker="sticker"
-        :class="$style.letter"
       />
-      <StickerSelector
-        v-model="sticker"
-        :class="$style.stickerSelector"
-      />
-    </div>
+    </transition>
+
+    <transition
+      :enter-from-class="$style.pageEnterFrom"
+      :enter-active-class="$style.pageEnterActive"
+      :leeave-active-class="$style.pageLeaveActive"
+      :leeave-to-class="$style.pageLeaveTo"
+      mode="out-in"
+    >
+      <div
+        v-if="stage === 1"
+        :class="$style.contentLetter"
+      >
+        <TheLetter
+          v-model:name="letterData.name"
+          v-model:age="letterData.age"
+          v-model:country="letterData.country"
+          v-model:wishes="letterData.wishes"
+          v-model:message="letterData.message"
+          v-model:parents-email="letterData.parentsEmail"
+          :age-options="$options.AGE_OPTIONS"
+          :country-options="$options.COUNTRY_OPTIONS"
+          :sticker="sticker"
+          :class="$style.letter"
+          @send="send"
+        />
+        <StickerSelector
+          v-model="sticker"
+          :stickers="$options.STICKERS"
+          :class="$style.stickerSelector"
+        />
+      </div>
+      <div
+        v-else-if="stage === 2"
+        :class="$style.contentText"
+      >
+        <p>In just a moment, he'll be able to check if you're on the naughty or nice list.</p>
+        <p>Keep an eye on your emails as your parents might get a surprise from one of his elves!</p>
+      </div>
+    </transition>
 
     <footer :class="$style.footer">
       <a
@@ -42,12 +73,18 @@
 
 <script>
 import MainHeader from '@/components/MainHeader';
+import FinalHeader from '@/components/FinalHeader';
 import TheLetter from '@/components/Letter';
 import StickerSelector from '@/components/StickerSelector';
+import Sticker1 from '@/assets/images/sticker-1.png';
+import Sticker2 from '@/assets/images/sticker-2.png';
+import Sticker3 from '@/assets/images/sticker-3.png';
+import Sticker4 from '@/assets/images/sticker-4.png';
 
 export default {
   components: {
     MainHeader,
+    FinalHeader,
     TheLetter,
     StickerSelector,
   },
@@ -297,8 +334,31 @@ export default {
     'Zambia',
     'Zimbabwe',
   ],
+  STICKERS: {
+    1: {
+      url: Sticker1,
+      width: 138,
+      height: 135,
+    },
+    2: {
+      url: Sticker2,
+      width: 152,
+      height: 123,
+    },
+    3: {
+      url: Sticker3,
+      width: 132,
+      height: 163,
+    },
+    4: {
+      url: Sticker4,
+      width: 182,
+      height: 157,
+    },
+  },
   data() {
     return {
+      stage: 1,
       letterData: {
         name: null,
         age: null,
@@ -307,8 +367,13 @@ export default {
         message: null,
         parentsEmail: null,
       },
-      sticker: null,
+      sticker: this.$options.STICKERS[1],
     };
+  },
+  methods: {
+    send() {
+      this.stage = 2;
+    },
   },
 };
 </script>
@@ -362,7 +427,7 @@ body {
   flex-grow: 1;
 }
 
-.content {
+.contentLetter {
   display: flex;
   align-items: flex-start;
   max-width: 1000px;
@@ -379,6 +444,18 @@ body {
   flex-grow: 1;
   margin-top: 25px;
   margin-left: 25px;
+}
+
+.contentText {
+  text-align: center;
+
+  p {
+    max-width: 550px;
+    margin: 1em auto;
+    font-size: 22px;
+    color: #a9c4ed;
+    text-shadow: 0 1px 4px #02030352;
+  }
 }
 
 .footer {
@@ -399,5 +476,21 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
   }
+}
+
+.pageEnterFrom {
+  transform: scale(0);
+}
+
+.pageEnterActive {
+  transition: transform 0.2s ease-in;
+}
+
+.pageLeaveActive {
+  transition: transform 0.2s ease-in;
+}
+
+.pageLeaveTo {
+  transform: scale(0);
 }
 </style>

@@ -13,21 +13,21 @@
         :leave-to-class="$style.stickerLeaveTo"
       >
         <button
-          v-if="modelValue.url !== $options.STICKERS[1].url"
+          v-if="modelValue.url !== stickers[1].url"
           :class="$style.sticker"
           :style="{
-            width: `${$options.STICKERS[1].width * 2 / 538 * 100}%`,
+            width: `${stickers[1].width * 2 / 538 * 100}%`,
             top: '25%',
             left: '55%',
           }"
-          @click="selectSticker($options.STICKERS[1])"
+          @click="selectSticker(stickers[1])"
         >
           <span class="srOnly">Sticker 1</span>
           <span
             :class="$style.stickerImage"
             :style="{
-              backgroundImage: `url(${$options.STICKERS[1].url})`,
-              paddingTop: `${$options.STICKERS[1].height / $options.STICKERS[1].width * 100}%`,
+              backgroundImage: `url(${stickers[1].url})`,
+              paddingTop: `${stickers[1].height / stickers[1].width * 100}%`,
             }"
           />
         </button>
@@ -41,21 +41,21 @@
         :leave-to-class="$style.stickerLeaveTo"
       >
         <button
-          v-if="modelValue.url !== $options.STICKERS[2].url"
+          v-if="modelValue.url !== stickers[2].url"
           :class="$style.sticker"
           :style="{
-            width: `${$options.STICKERS[2].width * 2 / 538 * 100}%`,
+            width: `${stickers[2].width * 2 / 538 * 100}%`,
             top: '31%',
             left: '3%',
           }"
-          @click="selectSticker($options.STICKERS[2])"
+          @click="selectSticker(stickers[2])"
         >
           <span class="srOnly">Sticker 2</span>
           <span
             :class="$style.stickerImage"
             :style="{
-              backgroundImage: `url(${$options.STICKERS[2].url})`,
-              paddingTop: `${$options.STICKERS[2].height / $options.STICKERS[2].width * 100}%`,
+              backgroundImage: `url(${stickers[2].url})`,
+              paddingTop: `${stickers[2].height / stickers[2].width * 100}%`,
             }"
           />
         </button>
@@ -69,21 +69,21 @@
         :leave-to-class="$style.stickerLeaveTo"
       >
         <button
-          v-if="modelValue.url !== $options.STICKERS[3].url"
+          v-if="modelValue.url !== stickers[3].url"
           :class="$style.sticker"
           :style="{
-            width: `${$options.STICKERS[3].width * 2 / 538 * 100}%`,
+            width: `${stickers[3].width * 2 / 538 * 100}%`,
             top: '57%',
             left: '55%',
           }"
-          @click="selectSticker($options.STICKERS[3])"
+          @click="selectSticker(stickers[3])"
         >
           <span class="srOnly">Sticker 3</span>
           <span
             :class="$style.stickerImage"
             :style="{
-              backgroundImage: `url(${$options.STICKERS[3].url})`,
-              paddingTop: `${$options.STICKERS[3].height / $options.STICKERS[3].width * 100}%`,
+              backgroundImage: `url(${stickers[3].url})`,
+              paddingTop: `${stickers[3].height / stickers[3].width * 100}%`,
             }"
           />
         </button>
@@ -97,21 +97,21 @@
         :leave-to-class="$style.stickerLeaveTo"
       >
         <button
-          v-if="modelValue.url !== $options.STICKERS[4].url"
+          v-if="modelValue.url !== stickers[4].url"
           :class="$style.sticker"
           :style="{
-            width: `${$options.STICKERS[4].width * 2 / 538 * 100}%`,
+            width: `${stickers[4].width * 2 / 538 * 100}%`,
             top: '62%',
             left: '-9%',
           }"
-          @click="selectSticker($options.STICKERS[4])"
+          @click="selectSticker(stickers[4])"
         >
           <span class="srOnly">Sticker 4</span>
           <span
             :class="$style.stickerImage"
             :style="{
-              backgroundImage: `url(${$options.STICKERS[4].url})`,
-              paddingTop: `${$options.STICKERS[4].height / $options.STICKERS[4].width * 100}%`,
+              backgroundImage: `url(${stickers[4].url})`,
+              paddingTop: `${stickers[4].height / stickers[4].width * 100}%`,
             }"
           />
         </button>
@@ -121,45 +121,19 @@
 </template>
 
 <script>
-import Sticker1 from '@/assets/images/sticker-1.png';
-import Sticker2 from '@/assets/images/sticker-2.png';
-import Sticker3 from '@/assets/images/sticker-3.png';
-import Sticker4 from '@/assets/images/sticker-4.png';
-
 export default {
   props: {
     modelValue: {
       type: Object,
       default: null,
     },
+    stickers: {
+      type: Object,
+      default: null,
+    },
   },
   emits: {
     'update:modelValue': null,
-  },
-  STICKERS: {
-    1: {
-      url: Sticker1,
-      width: 138,
-      height: 135,
-    },
-    2: {
-      url: Sticker2,
-      width: 152,
-      height: 123,
-    },
-    3: {
-      url: Sticker3,
-      width: 132,
-      height: 163,
-    },
-    4: {
-      url: Sticker4,
-      width: 182,
-      height: 157,
-    },
-  },
-  created() {
-    this.$emit('update:modelValue', this.$options.STICKERS[1]);
   },
   methods: {
     selectSticker(sticker) {
