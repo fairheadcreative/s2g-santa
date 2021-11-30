@@ -19,6 +19,7 @@
         :age-options="$options.AGE_OPTIONS"
         :country-options="$options.COUNTRY_OPTIONS"
         :sticker="sticker"
+        :class="$style.letter"
       />
       <StickerSelector
         v-model="sticker"
@@ -350,6 +351,7 @@ body {
 /* stylelint-enable */
 
 .container {
+  width: 100%;
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -363,6 +365,14 @@ body {
 .content {
   display: flex;
   align-items: flex-start;
+  max-width: 1000px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+.letter {
+  width: 70%;
+  transform: rotate(-1deg);
 }
 
 .stickerSelector {

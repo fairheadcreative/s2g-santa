@@ -197,7 +197,6 @@ export default {
 <style lang="scss" module>
 .letter {
   position: relative;
-  width: 600px;
 }
 
 .background {

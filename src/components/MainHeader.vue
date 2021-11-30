@@ -31,6 +31,7 @@ export default {
 <style lang="scss" module>
 .header {
   margin-top: 20px;
+  text-align: center;
 }
 
 .heading {
