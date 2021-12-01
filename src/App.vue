@@ -1,4 +1,14 @@
 <template>
+  <link
+    rel="preload"
+    as="image"
+    :href="$options.FINAL_HEADING_IMAGE"
+  >
+  <link
+    rel="preload"
+    as="image"
+    :href="$options.FINAL_HEADING_SPINNER_IMAGE"
+  >
   <div
     :class="$style.page"
     class="container"
@@ -80,6 +90,8 @@ import Sticker1 from '@/assets/images/sticker-1.png';
 import Sticker2 from '@/assets/images/sticker-2.png';
 import Sticker3 from '@/assets/images/sticker-3.png';
 import Sticker4 from '@/assets/images/sticker-4.png';
+import FinalHeadingImage from '@/assets/images/heading-2.png';
+import FinalHeadingSpinnerImage from '@/assets/images/spinner-2.png';
 
 export default {
   components: {
@@ -88,6 +100,8 @@ export default {
     TheLetter,
     StickerSelector,
   },
+  FINAL_HEADING_IMAGE: FinalHeadingImage,
+  FINAL_HEADING_SPINNER_IMAGE: FinalHeadingSpinnerImage,
   AGE_OPTIONS: Array.from(new Array(99), (_, i) => i + 1),
   COUNTRY_OPTIONS: [
     'Afghanistan',
