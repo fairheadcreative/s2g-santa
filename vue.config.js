@@ -3,6 +3,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'gh-pages' ? './' : '/',
   lintOnSave: isDevelopment ? true : 'default',
   devServer: {
     host: 'localhost',

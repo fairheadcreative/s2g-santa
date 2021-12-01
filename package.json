@@ -10,7 +10,7 @@
     "lint:stylelint": "cross-env NODE_ENV=production stylelint --fix '**/*.{vue,css,sass,scss}'",
     "lint": "run-s lint:*",
     "prepare": "husky install ./husky",
-    "deploy": "gh-pages -d dist"
+    "deploy": "cross-env NODE_ENV=gh-pages npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "core-js": "^3.10.1",
