@@ -6,7 +6,7 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'gh-pages' ? './' : '/',
   lintOnSave: isDevelopment ? true : 'default',
   devServer: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 3000,
     headers: {
       'Access-Control-Allow-Origin': '*',
