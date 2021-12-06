@@ -432,7 +432,6 @@ body {
 
 .container {
   width: 100%;
-  min-width: 910px;
   max-width: 1300px;
   margin: 0 auto;
 }
@@ -449,20 +448,36 @@ body {
   max-width: 1000px;
   padding: 0 50px;
   margin: 0 auto;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column-reverse;
+    padding: 0 20px;
+  }
 }
 
 .letter {
   width: 70%;
   transform: rotate(-1deg);
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 }
 
 .stickerSelector {
   flex-grow: 1;
   margin-top: 25px;
   margin-left: 25px;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 20px;
+  }
 }
 
 .contentText {
+  padding: 0 10px;
   text-align: center;
 
   p {
@@ -471,6 +486,10 @@ body {
     font-size: 22px;
     color: #a9c4ed;
     text-shadow: 0 1px 4px #02030352;
+
+    @media screen and (max-width: 909px) {
+      font-size: 18px;
+    }
   }
 }
 

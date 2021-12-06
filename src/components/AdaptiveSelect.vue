@@ -107,6 +107,11 @@ export default {
   background-color: rgba(191, 181, 161, 0.42);
   border-radius: 3px;
 
+  @media screen and (max-width: 909px) {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
   &::after {
     position: relative;
     top: -3px;

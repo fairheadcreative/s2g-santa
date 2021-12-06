@@ -146,10 +146,14 @@ export default {
 <style lang="scss" module>
 .selector {
   position: relative;
-  padding-top: 155.39%;
+  padding-top: 135.384%;
   background-image: url('~@/assets/images/sticker-selector-background.png');
   background-repeat: no-repeat;
   background-size: contain;
+
+  @media screen and (max-width: 909px) {
+    background-image: url('~@/assets/images/sticker-selector-background-mobile.png');
+  }
 }
 
 .sticker {
@@ -159,6 +163,10 @@ export default {
   cursor: pointer;
   background: transparent;
   transition: transform 0.2s ease-in-out;
+
+  @media screen and (max-width: 909px) {
+    margin-top: -20px;
+  }
 
   &:not(.stickerLeaveActive) {
 

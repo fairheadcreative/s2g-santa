@@ -4,7 +4,6 @@
   >
     <div
       :class="$style.centerBackground"
-      :style="centerBackgroundStyle"
     />
     <!--suppress HtmlUnknownAttribute -->
     <textarea
@@ -12,16 +11,11 @@
       v-model="modelProxy"
       :class="$style.textarea"
       :placeholder="placeholder"
-      :style="edgesBackgroundStyle"
     />
   </div>
 </template>
 
 <script>
-import LineCenterSegmentSvg from './assets/images/line-center-segment.svg';
-import LineEdgeLeftSvg from './assets/images/line-edge-left.svg';
-import LineEdgeRightSvg from './assets/images/line-edge-right.svg';
-
 export default {
   props: {
     placeholder: {
@@ -40,9 +34,6 @@ export default {
   emits: {
     'update:modelValue': null,
   },
-  LINE_CENTER_SEGMENT_SVG: LineCenterSegmentSvg,
-  LINE_EDGE_LEFT_SVG: LineEdgeLeftSvg,
-  LINE_EDGE_RIGHT_SVG: LineEdgeRightSvg,
   computed: {
     modelProxy: {
       get() {
@@ -51,17 +42,6 @@ export default {
       set(value) {
         this.$emit('update:modelValue', value);
       },
-    },
-    centerBackgroundStyle() {
-      return {
-        background: `url(${this.$options.LINE_CENTER_SEGMENT_SVG})`,
-      };
-    },
-    edgesBackgroundStyle() {
-      return {
-        background: `url(${this.$options.LINE_EDGE_LEFT_SVG}) repeat-y,\
-        url(${this.$options.LINE_EDGE_RIGHT_SVG}) repeat-y right 0px`,
-      };
     },
     inputContent() {
       return this.modelProxy || this.placeholder;
@@ -95,6 +75,11 @@ export default {
   right: 5px;
   bottom: 0;
   left: 5px;
+  background: url('~@/assets/images/textarea-line-center-segment.svg');
+
+  @media screen and (max-width: 909px) {
+    background: url('~@/assets/images/textarea-line-center-segment-mobile.svg');
+  }
 }
 
 .textarea {
@@ -110,6 +95,17 @@ export default {
   line-height: $line-height;
   color: #6e695e;
   resize: none;
+  background: url('~@/assets/images/textarea-line-edge-left.svg') repeat-y,
+    url('~@/assets/images/textarea-line-edge-right.svg') repeat-y right 0;
+
+  @media screen and (max-width: 909px) {
+    $line-height: 25px;
+    min-height: calc(#{$line-height} * v-bind('minRows'));
+    font-size: 18px;
+    line-height: $line-height;
+    background: url('~@/assets/images/textarea-line-edge-left-mobile.svg') repeat-y,
+      url('~@/assets/images/textarea-line-edge-right-mobile.svg') repeat-y right 0;
+  }
 
   &::placeholder {
     color: rgba(113, 102, 79, 0.54);

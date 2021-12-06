@@ -23,6 +23,11 @@ export default {
   cursor: pointer;
   border-radius: 4px;
 
+  @media screen and (max-width: 909px) {
+    width: 84px;
+    height: 35px;
+  }
+
   &:focus {
     outline: none;
   }
@@ -31,6 +36,10 @@ export default {
 
     .background {
       background-position-y: 68px;
+
+      @media screen and (max-width: 909px) {
+        background-position-y: 47.6px;
+      }
     }
   }
 
@@ -48,5 +57,13 @@ export default {
   pointer-events: none;
   background-image: url('~@/assets/images/send-button.png');
   background-size: 143px 136px;
+
+  @media screen and (max-width: 909px) {
+    top: -2px;
+    left: -8px;
+    width: 100px;
+    height: 47.6px;
+    background-size: 100px 95.2px;
+  }
 }
 </style>

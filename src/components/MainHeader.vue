@@ -46,10 +46,22 @@ export default {
   transform: translate(-50%, -50%);
   transform-origin: center;
   animation: rotate-radiance 5s linear infinite;
+
+  @media screen and (max-width: 909px) {
+    width: 500px;
+    height: 500px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 .image {
   position: relative;
+  max-width: 100%;
+  height: auto;
 }
 
 .lead {
@@ -59,6 +71,12 @@ export default {
   font-weight: 600;
   text-align: center;
   text-shadow: 0 1px 4px #02030352;
+
+  @media screen and (max-width: 909px) {
+    padding: 0 10px;
+    margin-top: -30px;
+    font-size: 18px;
+  }
 }
 
 @keyframes rotate-radiance {

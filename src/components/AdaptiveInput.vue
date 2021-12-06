@@ -81,6 +81,11 @@ export default {
   padding: 0 5px;
   font-size: 22px;
   line-height: 26px;
+
+  @media screen and (max-width: 909px) {
+    font-size: 18px;
+    line-height: 23px;
+  }
 }
 
 .input {

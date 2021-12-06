@@ -95,7 +95,7 @@
 import { debounce } from 'lodash';
 import AdaptiveInput from '@/components/AdaptiveInput';
 import AdaptiveSelect from '@/components/AdaptiveSelect';
-import AdaptiveTextarea from '@/components/AdaptiveTextarea/AdaptiveTextarea';
+import AdaptiveTextarea from '@/components/AdaptiveTextarea';
 import SendButton from '@/components/SendButton';
 
 export default {
@@ -233,9 +233,12 @@ export default {
 
 .content {
   position: relative;
-  padding: 30px;
-  padding-top: 40px;
+  padding: 40px 30px 30px;
   color: #6e695e;
+
+  @media screen and (max-width: 909px) {
+    padding: 25px 20px 20px;
+  }
 
   .header {
     display: flex;
@@ -244,6 +247,16 @@ export default {
       margin-top: -30px;
       margin-right: -10px;
       margin-left: 10px;
+
+      @media screen and (max-width: 909px) {
+        margin-top: -10px;
+        margin-right: -10px;
+
+        img {
+          max-width: 80px;
+          height: auto;
+        }
+      }
     }
   }
 
@@ -254,6 +267,11 @@ export default {
     &:not(:first-child) {
       margin-top: 20px;
     }
+
+    @media screen and (max-width: 909px) {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 
   .emailSection {
@@ -261,6 +279,10 @@ export default {
     align-items: flex-start;
     justify-content: space-between;
     max-width: 100%;
+
+    @media screen and (max-width: 909px) {
+      flex-direction: column;
+    }
 
     > div:first-child {
       flex-shrink: 1;
@@ -272,6 +294,12 @@ export default {
     flex-shrink: 0;
     margin-top: -13px;
     margin-left: 10px;
+
+    @media screen and (max-width: 909px) {
+      align-self: flex-end;
+      margin-top: 5px;
+      margin-left: 0;
+    }
   }
 }
 
