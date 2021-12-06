@@ -246,9 +246,17 @@ export default {
   .emailSection {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    max-width: 100%;
+
+    > div:first-child {
+      flex-shrink: 1;
+      min-width: 0;
+    }
   }
 
   .sendButton {
+    flex-shrink: 0;
     margin-top: -13px;
     margin-left: 10px;
   }
