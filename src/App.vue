@@ -487,7 +487,7 @@ body {
     display: inline-block;
     width: 96px;
     height: 38px;
-    margin-right: 2px;
+    margin-right: 5px;
     background-image: url('~@/assets/images/logo.png');
     background-repeat: no-repeat;
     background-size: contain;
