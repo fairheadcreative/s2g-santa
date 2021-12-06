@@ -1,10 +1,12 @@
 <template>
   <input
+    ref="input"
     v-model="modelProxy"
-    type="text"
+    :type="type"
     :class="$style.input"
     :placeholder="placeholder"
     :style="{ width: `${inputWidth}px` }"
+    :required="isRequired"
   >
   <teleport to="body">
     <div :class="$style.ghostWrapper">
@@ -27,6 +29,14 @@ export default {
     placeholder: {
       type: String,
       default: null,
+    },
+    type: {
+      type: String,
+      default: 'text',
+    },
+    isRequired: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: {

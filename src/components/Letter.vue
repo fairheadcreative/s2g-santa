@@ -1,5 +1,8 @@
 <template>
-  <div :class="$style.letter">
+  <form
+    :class="$style.letter"
+    @submit.prevent="sendDebounced"
+  >
     <img
       src="@/assets/images/letter.png"
       :class="$style.background"
@@ -72,8 +75,11 @@
         <div>
           My parents email is
           <AdaptiveInput
+            ref="email"
             v-model="parentsEmailProxy"
             placeholder="email@email.com"
+            type="email"
+            is-required
           />
         </div>
         <SendButton
@@ -82,10 +88,11 @@
         />
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
+import { debounce } from 'lodash';
 import AdaptiveInput from '@/components/AdaptiveInput';
 import AdaptiveSelect from '@/components/AdaptiveSelect';
 import AdaptiveTextarea from '@/components/AdaptiveTextarea/AdaptiveTextarea';
@@ -195,9 +202,15 @@ export default {
       },
     },
   },
+  created() {
+    // Form calls send function 2 times if it valid for some reason
+    this.sendDebounced = debounce(this.send, 0, { trailing: false });
+  },
   methods: {
     send() {
-      this.$emit('send');
+      if (this.$refs.email.$refs.input.validity.valid) {
+        this.$emit('send');
+      }
     },
   },
 };

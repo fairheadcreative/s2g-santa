@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    type="submit"
     :class="$style.button"
   >
     <span :class="$style.background" />
