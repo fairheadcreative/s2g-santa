@@ -54,6 +54,10 @@ export default {
   },
   mounted() {
     this.updateTextareaHeight();
+    document.addEventListener('resize', this.updateTextareaHeight);
+  },
+  beforeUnmount() {
+    document.removeEventListener('resize', this.updateTextareaHeight);
   },
   methods: {
     updateTextareaHeight() {
