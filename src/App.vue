@@ -16,8 +16,8 @@
     <transition
       :enter-from-class="$style.pageEnterFrom"
       :enter-active-class="$style.pageEnterActive"
-      :leeave-active-class="$style.pageLeaveActive"
-      :leeave-to-class="$style.pageLeaveTo"
+      :leave-active-class="$style.pageLeaveActive"
+      :leave-to-class="$style.pageLeaveTo"
       mode="out-in"
     >
       <MainHeader
@@ -29,44 +29,64 @@
       />
     </transition>
 
-    <transition
-      :enter-from-class="$style.pageEnterFrom"
-      :enter-active-class="$style.pageEnterActive"
-      :leeave-active-class="$style.pageLeaveActive"
-      :leeave-to-class="$style.pageLeaveTo"
-      mode="out-in"
-    >
-      <div
-        v-if="stage === 1"
-        :class="$style.contentLetter"
+    <div :class="$style.mainContent">
+      <transition
+        :enter-from-class="$style.pageEnterFrom"
+        :enter-active-class="$style.pageEnterActive"
+        :leave-active-class="$style.pageLeaveActive"
+        :leave-to-class="$style.pageLeaveTo"
+        mode="out-in"
       >
-        <TheLetter
-          v-model:name="letterData.name"
-          v-model:age="letterData.age"
-          v-model:country="letterData.country"
-          v-model:wishes="letterData.wishes"
-          v-model:message="letterData.message"
-          v-model:parents-email="letterData.parentsEmail"
-          :age-options="$options.AGE_OPTIONS"
-          :country-options="$options.COUNTRY_OPTIONS"
-          :sticker="sticker"
-          :class="$style.letter"
-          @send="send"
-        />
-        <StickerSelector
-          v-model="sticker"
-          :stickers="$options.STICKERS"
-          :class="$style.stickerSelector"
-        />
-      </div>
+        <div
+          v-if="stage === 1"
+          :class="[
+            $style.contentLetter,
+            {
+              [$style.isLoading]: isLoading,
+            },
+          ]"
+        >
+          <TheLetter
+            v-model:name="letterData.name"
+            v-model:age="letterData.age"
+            v-model:country="letterData.country"
+            v-model:wishes="letterData.wishes"
+            v-model:message="letterData.message"
+            v-model:parents-email="letterData.parentsEmail"
+            :age-options="$options.AGE_OPTIONS"
+            :country-options="$options.COUNTRY_OPTIONS"
+            :sticker="sticker"
+            :class="$style.letter"
+            @send="send"
+          />
+          <StickerSelector
+            v-model="sticker"
+            :stickers="$options.STICKERS"
+            :class="$style.stickerSelector"
+          />
+        </div>
+        <div
+          v-else-if="stage === 2"
+          :class="$style.contentText"
+        >
+          <p>In just a moment, he'll be able to check if you're on the naughty or nice list.</p>
+          <p>Keep an eye on your emails as your parents might get a surprise from one of his elves!</p>
+        </div>
+      </transition>
       <div
-        v-else-if="stage === 2"
-        :class="$style.contentText"
+        v-if="isLoading"
+        :class="$style.loader"
       >
-        <p>In just a moment, he'll be able to check if you're on the naughty or nice list.</p>
-        <p>Keep an eye on your emails as your parents might get a surprise from one of his elves!</p>
+        <div :class="$style.loaderIcon">
+          <img
+            src="@/assets/images/icons/status-circles-ring.svg"
+            alt="Loader"
+            width="32"
+            height="32"
+          >
+        </div>
       </div>
-    </transition>
+    </div>
 
     <footer :class="$style.footer">
       <a
@@ -382,11 +402,16 @@ export default {
         parentsEmail: null,
       },
       sticker: this.$options.STICKERS[1],
+      isLoading: false,
     };
   },
   methods: {
     send() {
-      this.stage = 2;
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.stage = 2;
+      }, 4000);
     },
   },
 };
@@ -442,16 +467,56 @@ body {
   flex-grow: 1;
 }
 
+.mainContent {
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loaderIcon {
+  display: inline-flex;
+  padding: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  animation: loaderSpinning 1.5s linear infinite;
+}
+
+@keyframes loaderSpinning {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .contentLetter {
   display: flex;
   align-items: flex-start;
   max-width: 1000px;
   padding: 0 50px;
   margin: 0 auto;
+  transition: opacity 0.2s ease-in-out;
 
   @media screen and (max-width: 700px) {
     flex-direction: column-reverse;
     padding: 0 20px;
+  }
+
+  &.isLoading {
+    opacity: 0.4;
   }
 }
 
@@ -494,6 +559,7 @@ body {
 }
 
 .footer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
