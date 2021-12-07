@@ -2,11 +2,13 @@
   <input
     ref="input"
     v-model="modelProxy"
+    :name="name"
     :type="type"
     :class="$style.input"
     :placeholder="placeholder"
     :style="{ width: `${inputWidth}px` }"
     :required="isRequired"
+    :autocomplete="autocomplete"
   >
   <teleport to="body">
     <div :class="$style.ghostWrapper">
@@ -33,6 +35,14 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    autocomplete: {
+      type: String,
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
     },
     isRequired: {
       type: Boolean,

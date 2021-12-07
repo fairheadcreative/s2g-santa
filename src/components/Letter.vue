@@ -74,12 +74,15 @@
       <div :class="[$style.p, $style.emailSection]">
         <div>
           My parents email is
+          <!-- "search" name is a hack for Safari to hide their additional input controls -->
           <AdaptiveInput
             ref="email"
             v-model="parentsEmailProxy"
             placeholder="email@email.com"
             type="email"
             is-required
+            autocomplete="off"
+            name="search"
           />
         </div>
         <SendButton
