@@ -73,7 +73,7 @@
       </div>
       <div :class="[$style.p, $style.emailSection]">
         <div>
-          My parents email is
+          My parent's email is
           <!-- "search" name is a hack for Safari to hide their additional input controls -->
           <AdaptiveInput
             ref="email"
