@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash';
+
 export default {
   props: {
     modelValue: {
@@ -75,8 +77,15 @@ export default {
       this.$nextTick(this.updateInputSize);
     },
   },
+  created() {
+    this.updateInputSizeDebounced = debounce(this.updateInputSize, 200);
+  },
   mounted() {
     this.updateInputSize();
+    window.addEventListener('resize', this.updateInputSizeDebounced);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateInputSizeDebounced);
   },
   methods: {
     updateInputSize() {

@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash';
+
 export default {
   props: {
     placeholder: {
@@ -52,12 +54,15 @@ export default {
       this.$nextTick(this.updateTextareaHeight);
     },
   },
+  created() {
+    this.updateTextareaHeightDebounced = debounce(this.updateTextareaHeight, 200);
+  },
   mounted() {
     this.updateTextareaHeight();
-    document.addEventListener('resize', this.updateTextareaHeight);
+    window.addEventListener('resize', this.updateTextareaHeightDebounced);
   },
   beforeUnmount() {
-    document.removeEventListener('resize', this.updateTextareaHeight);
+    window.removeEventListener('resize', this.updateTextareaHeightDebounced);
   },
   methods: {
     updateTextareaHeight() {
