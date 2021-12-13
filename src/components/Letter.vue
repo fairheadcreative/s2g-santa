@@ -206,7 +206,7 @@ export default {
     },
   },
   created() {
-    // Form calls send function 2 times if it valid for some reason
+    // Form calls send function 2 times if it's valid for some reason
     this.sendDebounced = debounce(this.send, 0, { trailing: false });
   },
   methods: {
