@@ -246,6 +246,11 @@ export default {
   .header {
     display: flex;
 
+    .text {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
     .sticker {
       margin-top: -30px;
       margin-right: -10px;
@@ -279,23 +284,24 @@ export default {
 
   .emailSection {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     max-width: 100%;
 
     @media screen and (max-width: 909px) {
       flex-direction: column;
+      align-items: flex-start;
     }
 
     > div:first-child {
       flex-shrink: 1;
       min-width: 0;
+      max-width: 100%;
     }
   }
 
   .sendButton {
     flex-shrink: 0;
-    margin-top: -13px;
     margin-left: 10px;
 
     @media screen and (max-width: 909px) {

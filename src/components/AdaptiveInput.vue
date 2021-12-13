@@ -101,6 +101,7 @@ export default {
 .input {
   @include reset;
   @include input-style;
+  max-width: 100%;
   color: #6e695e;
   background-color: rgba(191, 181, 161, 0.42);
   border-radius: 3px;
