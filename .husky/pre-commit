@@ -1,2 +1,0 @@
-cd flask_site/flask_backend/vue-app
-npx --no-install lint-staged
