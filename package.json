@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rm -r ./node_modules/.cache/vue-loader/ ; vue-cli-service build",
-    "build:stats": "rm -r ./node_modules/.cache/vue-loader/ ; vue-cli-service build --report-json",
+    "build": "vue-cli-service build",
+    "build:stats": "vue-cli-service build --report-json",
     "lint:eslint": "cross-env NODE_ENV=production vue-cli-service lint",
     "lint:stylelint": "cross-env NODE_ENV=production stylelint --fix '**/*.{vue,css,sass,scss}'",
     "lint": "run-s lint:*",
