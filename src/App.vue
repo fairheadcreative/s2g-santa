@@ -109,7 +109,6 @@ import StickerSelector from '@/components/StickerSelector';
 import Sticker1 from '@/assets/images/sticker-1.png';
 import Sticker2 from '@/assets/images/sticker-2.png';
 import Sticker3 from '@/assets/images/sticker-3.png';
-import Sticker4 from '@/assets/images/sticker-4.png';
 import FinalHeadingImage from '@/assets/images/heading-2.png';
 import FinalHeadingSpinnerImage from '@/assets/images/spinner-2.png';
 
@@ -371,21 +370,16 @@ export default {
   STICKERS: {
     1: {
       url: Sticker1,
-      width: 138,
-      height: 135,
-    },
-    2: {
-      url: Sticker2,
       width: 152,
       height: 123,
     },
-    3: {
-      url: Sticker3,
+    2: {
+      url: Sticker2,
       width: 132,
       height: 163,
     },
-    4: {
-      url: Sticker4,
+    3: {
+      url: Sticker3,
       width: 182,
       height: 157,
     },

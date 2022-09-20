@@ -17,8 +17,8 @@
           :class="$style.sticker"
           :style="{
             width: `${stickers[1].width * 2 / 538 * 100}%`,
-            top: '25%',
-            left: '55%',
+            top: '30%',
+            left: '5%',
           }"
           @click="selectSticker(stickers[1])"
         >
@@ -45,8 +45,8 @@
           :class="$style.sticker"
           :style="{
             width: `${stickers[2].width * 2 / 538 * 100}%`,
-            top: '31%',
-            left: '3%',
+            top: '60%',
+            left: '55%',
           }"
           @click="selectSticker(stickers[2])"
         >
@@ -73,8 +73,8 @@
           :class="$style.sticker"
           :style="{
             width: `${stickers[3].width * 2 / 538 * 100}%`,
-            top: '57%',
-            left: '55%',
+            top: '60%',
+            left: '-10%',
           }"
           @click="selectSticker(stickers[3])"
         >
@@ -84,34 +84,6 @@
             :style="{
               backgroundImage: `url(${stickers[3].url})`,
               paddingTop: `${stickers[3].height / stickers[3].width * 100}%`,
-            }"
-          />
-        </button>
-      </transition>
-      <transition
-        :enter-from-class="$style.stickerEnterFrom"
-        :enter-active-class="$style.stickerEnterActive"
-        :enter-to-class="$style.stickerEnterTo"
-        :leave-from-class="$style.stickerLeaveFrom"
-        :leave-active-class="$style.stickerLeaveActive"
-        :leave-to-class="$style.stickerLeaveTo"
-      >
-        <button
-          v-if="modelValue.url !== stickers[4].url"
-          :class="$style.sticker"
-          :style="{
-            width: `${stickers[4].width * 2 / 538 * 100}%`,
-            top: '62%',
-            left: '-9%',
-          }"
-          @click="selectSticker(stickers[4])"
-        >
-          <span class="srOnly">Sticker 4</span>
-          <span
-            :class="$style.stickerImage"
-            :style="{
-              backgroundImage: `url(${stickers[4].url})`,
-              paddingTop: `${stickers[4].height / stickers[4].width * 100}%`,
             }"
           />
         </button>
