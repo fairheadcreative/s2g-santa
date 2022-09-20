@@ -46,13 +46,17 @@
             :leave-to-class="$style.stickerLeaveTo"
             mode="out-in"
           >
-            <img
+            <div
               :key="sticker.url"
-              :src="sticker.url"
-              alt="Sticker"
-              :width="sticker.width"
-              :height="sticker.height"
+              :class="$style.stickerWrapper"
             >
+              <img
+                :src="sticker.url"
+                alt="Sticker"
+                :width="sticker.width"
+                :height="sticker.height"
+              >
+            </div>
           </transition>
         </div>
       </div>
@@ -256,6 +260,32 @@ export default {
       margin-right: -10px;
       margin-left: 10px;
 
+      .stickerWrapper {
+        position: relative;
+        display: inline-flex;
+
+        &::after {
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          display: block;
+          width: 110px;
+          height: 108px;
+          content: '';
+          background-image: url('~@/assets/images/sticker-express.png');
+          background-size: contain;
+          opacity: 0.6;
+          animation: sticker-express-appear 0.4s forwards ease-in;
+
+          @media screen and (max-width: 909px) {
+            top: -5px;
+            left: -5px;
+            width: 60px;
+            height: 58px;
+          }
+        }
+      }
+
       @media screen and (max-width: 909px) {
         margin-top: -10px;
         margin-right: -10px;
@@ -333,5 +363,17 @@ export default {
 
 .stickerLeaveTo {
   opacity: 0;
+}
+
+@keyframes sticker-express-appear {
+
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
 }
 </style>
